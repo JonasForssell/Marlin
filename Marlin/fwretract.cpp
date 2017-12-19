@@ -134,7 +134,7 @@ void FWRetract::retract(const bool retracting
   if (retracting) {
     // Retract by moving from a faux E position back to the current E position
     feedrate_mm_s = retract_feedrate_mm_s;
-    current_position[E_AXIS] += (swapping ? swap_retract_length : retract_length) * renormalize;
+    current_position[E_CART] += (swapping ? swap_retract_length : retract_length) * renormalize;
     sync_plan_position_e();
     prepare_move_to_destination();
 
@@ -163,7 +163,7 @@ void FWRetract::retract(const bool retracting
     feedrate_mm_s = swapping ? swap_retract_recover_feedrate_mm_s : retract_recover_feedrate_mm_s;
 
     const float move_e = swapping ? swap_retract_length + swap_retract_recover_length : retract_length + retract_recover_length;
-    current_position[E_AXIS] -= move_e * renormalize;
+    current_position[E_CART] -= move_e * renormalize;
     sync_plan_position_e();
     prepare_move_to_destination();  // Recover E
   }

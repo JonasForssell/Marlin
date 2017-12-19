@@ -433,6 +433,8 @@ class Temperature {
         #if WATCH_THE_BED
           start_watching_bed();
         #endif
+      #else
+        UNUSED(celsius);
       #endif
     }
 
